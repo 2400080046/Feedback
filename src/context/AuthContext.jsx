@@ -17,7 +17,8 @@ export const AuthProvider = ({ children }) => {
         if (!localStorage.getItem('users')) {
             const initialUsers = [
                 { id: 'A1', name: 'Admin User', role: 'admin', email: 'admin@system.com', password: 'admin123' },
-                { id: 'S1', name: 'Student User', role: 'student', email: 'student@system.com', password: 'student123' }
+                { id: 'S1', name: 'Student User', role: 'student', email: 'student@system.com', password: 'student123' },
+                { id: 'I1', name: 'Instructor User', role: 'instructor', email: 'instructor@system.com', password: 'instructor123' }
             ];
             localStorage.setItem('users', JSON.stringify(initialUsers));
         }

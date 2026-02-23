@@ -89,6 +89,10 @@ const Layout = ({ children }) => {
         </nav>
 
         <div className="sidebar-bottom">
+          <div className="proto-mode-badge">
+            <div className="badge-dot"></div>
+            <span>Prototype Active</span>
+          </div>
           <button onClick={handleLogout} className="logout-action">
             <LogOut size={18} />
             <span>Sign Out</span>
@@ -230,6 +234,36 @@ const Layout = ({ children }) => {
 
                 .logout-action:hover {
                     background: #fff1f2;
+                }
+
+                .proto-mode-badge {
+                    margin-bottom: 12px;
+                    background: #f0fdf4;
+                    border: 1px solid #dcfce7;
+                    padding: 8px 12px;
+                    border-radius: 8px;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    font-size: 11px;
+                    font-weight: 700;
+                    color: #16a34a;
+                    letter-spacing: 0.02em;
+                }
+
+                .badge-dot {
+                    width: 6px;
+                    height: 6px;
+                    background: #22c55e;
+                    border-radius: 50%;
+                    box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+                    animation: pulse 2s infinite;
+                }
+
+                @keyframes pulse {
+                    0% { transform: scale(1); opacity: 1; }
+                    50% { transform: scale(1.2); opacity: 0.6; }
+                    100% { transform: scale(1); opacity: 1; }
                 }
 
                 .main-viewport {

@@ -118,6 +118,35 @@ const Login = () => {
           </p>
         </form>
 
+        <div className="prototype-access">
+          <div className="proto-divider">
+            <span>PROTOTYPE QUICK ACCESS</span>
+          </div>
+          <div className="proto-buttons">
+            <button
+              type="button"
+              className="proto-btn student"
+              onClick={() => { setEmail('student@system.com'); setPassword('student123'); }}
+            >
+              Log in as Student
+            </button>
+            <button
+              type="button"
+              className="proto-btn instructor"
+              onClick={() => { setEmail('instructor@system.com'); setPassword('instructor123'); }}
+            >
+              Log in as Instructor
+            </button>
+            <button
+              type="button"
+              className="proto-btn admin"
+              onClick={() => { setEmail('admin@system.com'); setPassword('admin123'); }}
+            >
+              Log in as Admin
+            </button>
+          </div>
+        </div>
+
         <div className="floating-toggles">
           <button
             type="button"
@@ -145,6 +174,56 @@ const Login = () => {
 
       <style dangerouslySetInnerHTML={{
         __html: `
+        .prototype-access {
+          margin-top: 24px;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+
+        .proto-divider {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          color: #94a3b8;
+          font-size: 10px;
+          font-weight: 800;
+          letter-spacing: 0.1em;
+        }
+
+        .proto-divider::before, .proto-divider::after {
+          content: '';
+          flex: 1;
+          height: 1px;
+          background: #e2e8f0;
+        }
+
+        .proto-buttons {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 8px;
+        }
+
+        .proto-btn {
+          padding: 8px 4px;
+          border-radius: 8px;
+          font-size: 11px;
+          font-weight: 700;
+          border: 1px solid #e2e8f0;
+          background: white;
+          cursor: pointer;
+          transition: 0.2s;
+          color: #475569;
+        }
+
+        .proto-btn:hover {
+          background: #f8fafc;
+          border-color: #cbd5e1;
+        }
+
+        .proto-btn.student:hover { border-color: #22c55e; color: #16a34a; }
+        .proto-btn.instructor:hover { border-color: #3b82f6; color: #2563eb; }
+        .proto-btn.admin:hover { border-color: #6366f1; color: #4f46e5; }
         .academic-container {
           min-height: 100vh;
           background: #f8fafc;
