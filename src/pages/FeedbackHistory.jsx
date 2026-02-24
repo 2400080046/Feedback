@@ -76,11 +76,11 @@ const FeedbackHistory = () => {
             <style dangerouslySetInnerHTML={{
                 __html: `
                 .feedback-history-page {
-                    animation: fadeIn 0.5s ease;
+                    animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
                 }
 
                 @keyframes fadeIn {
-                    from { opacity: 0; transform: translateY(10px); }
+                    from { opacity: 0; transform: translateY(20px); }
                     to { opacity: 1; transform: translateY(0); }
                 }
 
@@ -92,42 +92,46 @@ const FeedbackHistory = () => {
                 }
 
                 .page-title {
-                    font-size: 28px;
+                    font-size: 32px;
                     font-weight: 800;
-                    color: #0f172a;
+                    color: var(--text-main);
                     margin: 0;
+                    letter-spacing: -0.02em;
                 }
 
                 .page-subtitle {
-                    color: #64748b;
-                    margin-top: 4px;
-                    font-size: 15px;
+                    color: var(--text-secondary);
+                    margin-top: 6px;
+                    font-size: 16px;
                 }
 
                 .export-btn {
                     display: flex;
                     align-items: center;
                     gap: 10px;
-                    background: white;
-                    color: #0f172a;
-                    padding: 10px 20px;
+                    background: var(--glass);
+                    color: var(--text-main);
+                    padding: 12px 24px;
                     border-radius: 12px;
                     font-size: 14px;
-                    font-weight: 600;
-                    border: 1px solid #e2e8f0;
+                    font-weight: 700;
+                    border: 1px solid var(--glass-border);
                     cursor: pointer;
-                    transition: all 0.2s;
+                    transition: var(--transition);
                 }
 
                 .export-btn:hover {
-                    background: #f8fafc;
-                    border-color: #cbd5e1;
+                    background: rgba(255, 255, 255, 0.08);
+                    border-color: var(--primary);
+                    transform: translateY(-2px);
                 }
 
                 .history-container {
-                    background: white;
-                    border: 1px solid #e2e8f0;
-                    border-radius: 20px;
+                    background: var(--glass);
+                    backdrop-filter: blur(12px);
+                    -webkit-backdrop-filter: blur(12px);
+                    border: 1px solid var(--glass-border);
+                    border-radius: 24px;
                     overflow: hidden;
                 }
 
@@ -142,20 +146,21 @@ const FeedbackHistory = () => {
                 }
 
                 .history-table th {
-                    background: #f8fafc;
-                    padding: 16px 24px;
-                    font-size: 13px;
-                    font-weight: 700;
-                    color: #64748b;
+                    background: rgba(255, 255, 255, 0.01);
+                    padding: 20px 24px;
+                    font-size: 11px;
+                    font-weight: 800;
+                    color: var(--text-muted);
                     text-transform: uppercase;
-                    letter-spacing: 0.05em;
+                    letter-spacing: 0.1em;
+                    border-bottom: 2px solid var(--glass-border);
                 }
 
                 .history-table td {
-                    padding: 20px 24px;
-                    border-bottom: 1px solid #f1f5f9;
+                    padding: 24px;
+                    border-bottom: 1px solid var(--glass-border);
                     font-size: 15px;
-                    color: #1e293b;
+                    color: var(--text-secondary);
                 }
 
                 .history-table tr:last-child td {
@@ -165,51 +170,71 @@ const FeedbackHistory = () => {
                 .course-cell {
                     display: flex;
                     align-items: center;
-                    gap: 12px;
+                    gap: 14px;
                 }
 
                 .course-icon {
-                    width: 32px;
-                    height: 32px;
-                    background: #eff6ff;
-                    color: #3b82f6;
-                    border-radius: 8px;
+                    width: 36px;
+                    height: 36px;
+                    background: rgba(139, 92, 246, 0.1);
+                    color: var(--primary);
+                    border-radius: 10px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    border: 1px solid rgba(139, 92, 246, 0.2);
                 }
 
                 .course-name {
-                    font-weight: 600;
+                    font-weight: 700;
+                    color: var(--text-main);
                 }
 
                 .date-cell, .rating-cell, .status-cell {
                     display: flex;
                     align-items: center;
-                    gap: 8px;
+                    gap: 10px;
+                    font-weight: 600;
                 }
 
                 .rating-val {
-                    font-weight: 700;
+                    font-weight: 800;
+                    color: var(--text-main);
                 }
 
                 .status-cell {
-                    color: #22c55e;
-                    font-weight: 600;
-                    background: #f0fdf4;
-                    padding: 4px 12px;
-                    border-radius: 99px;
+                    color: var(--success);
+                    font-weight: 800;
+                    background: rgba(16, 185, 129, 0.1);
+                    padding: 6px 14px;
+                    border-radius: 100px;
                     display: inline-flex;
+                    font-size: 12px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.05em;
+                    border: 1px solid rgba(16, 185, 129, 0.2);
                 }
 
                 .empty-state {
-                    padding: 80px;
+                    padding: 100px 40px;
                     text-align: center;
                 }
 
                 .empty-icon {
-                    font-size: 48px;
-                    margin-bottom: 16px;
+                    font-size: 64px;
+                    margin-bottom: 24px;
+                    opacity: 0.5;
+                }
+                
+                .empty-state h3 {
+                    font-size: 20px;
+                    font-weight: 800;
+                    color: var(--text-main);
+                    margin-bottom: 8px;
+                }
+                
+                .empty-state p {
+                    color: var(--text-secondary);
                 }
 
                 @media (max-width: 768px) {

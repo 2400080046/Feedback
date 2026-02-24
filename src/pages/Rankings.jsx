@@ -95,11 +95,11 @@ const Rankings = () => {
             <style dangerouslySetInnerHTML={{
                 __html: `
                 .rankings-page {
-                    animation: fadeIn 0.5s ease-out;
+                    animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
                 }
 
                 @keyframes fadeIn {
-                    from { opacity: 0; transform: translateY(10px); }
+                    from { opacity: 0; transform: translateY(20px); }
                     to { opacity: 1; transform: translateY(0); }
                 }
 
@@ -111,110 +111,124 @@ const Rankings = () => {
                 }
 
                 .page-title {
-                    font-size: 28px;
+                    font-size: 32px;
                     font-weight: 800;
-                    color: #0f172a;
+                    color: var(--text-main);
                     margin: 0;
+                    letter-spacing: -0.02em;
                 }
 
                 .page-subtitle {
-                    color: #64748b;
-                    margin-top: 4px;
-                    font-size: 15px;
+                    color: var(--text-secondary);
+                    margin-top: 6px;
+                    font-size: 16px;
                 }
 
                 .rank-period {
                     display: flex;
                     align-items: center;
-                    gap: 8px;
-                    background: #f0fdf4;
-                    color: #16a34a;
-                    padding: 8px 16px;
-                    border-radius: 99px;
+                    gap: 10px;
+                    background: rgba(34, 197, 94, 0.1);
+                    color: var(--success);
+                    padding: 10px 20px;
+                    border-radius: 100px;
                     font-size: 13px;
-                    font-weight: 700;
+                    font-weight: 800;
+                    border: 1px solid rgba(34, 197, 94, 0.2);
+                    text-transform: uppercase;
+                    letter-spacing: 0.05em;
                 }
 
                 .top-three {
                     display: flex;
                     justify-content: center;
                     align-items: flex-end;
-                    gap: 24px;
-                    margin-bottom: 48px;
+                    gap: 32px;
+                    margin-bottom: 64px;
                     padding-bottom: 24px;
                 }
 
                 .rank-podium {
-                    background: white;
-                    border-radius: 24px;
-                    border: 1px solid #e2e8f0;
-                    padding: 32px;
+                    background: var(--glass);
+                    backdrop-filter: blur(12px);
+                    -webkit-backdrop-filter: blur(12px);
+                    border-radius: 32px;
+                    border: 1px solid var(--glass-border);
+                    padding: 40px;
                     text-align: center;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    transition: 0.3s;
+                    transition: var(--transition);
                     position: relative;
-                    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
                 }
 
                 .rank-podium:hover {
-                    transform: translateY(-8px);
-                    border-color: #2563eb;
-                    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+                    transform: translateY(-12px);
+                    border-color: var(--primary);
+                    background: rgba(255, 255, 255, 0.05);
+                    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.4);
                 }
 
-                .pos-1 { width: 320px; z-index: 2; border: 2px solid #f59e0b; }
-                .pos-2 { width: 280px; order: -1; margin-bottom: -20px; border: 1px solid #cbd5e1; }
-                .pos-3 { width: 280px; margin-bottom: -20px; border: 1px solid #d97706; }
+                .pos-1 { 
+                    width: 360px; 
+                    z-index: 2; 
+                    border: 2px solid #f59e0b; 
+                    box-shadow: 0 0 30px rgba(245, 158, 11, 0.15); 
+                }
+                .pos-2 { width: 300px; order: -1; margin-bottom: -30px; border: 1px solid #94a3b8; }
+                .pos-3 { width: 300px; margin-bottom: -30px; border: 1px solid #d97706; }
 
                 .podium-badge {
-                    margin-bottom: 20px;
+                    margin-bottom: 24px;
+                    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
                 }
 
                 .pos-1 .podium-badge { color: #f59e0b; }
-                .pos-2 .podium-badge { color: #64748b; }
+                .pos-2 .podium-badge { color: #94a3b8; }
                 .pos-3 .podium-badge { color: #d97706; }
 
                 .podium-avatar {
-                    width: 64px;
-                    height: 64px;
-                    background: #f1f5f9;
-                    border-radius: 16px;
+                    width: 80px;
+                    height: 80px;
+                    background: rgba(255, 255, 255, 0.03);
+                    border-radius: 20px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    font-size: 24px;
+                    font-size: 32px;
                     font-weight: 800;
-                    color: #1e293b;
-                    margin-bottom: 16px;
-                    border: 1px solid #e2e8f0;
+                    color: var(--text-main);
+                    margin-bottom: 20px;
+                    border: 1px solid var(--glass-border);
                 }
 
                 .podium-name {
-                    font-size: 18px;
+                    font-size: 20px;
                     font-weight: 800;
-                    color: #0f172a;
+                    color: var(--text-main);
                     margin: 0;
+                    letter-spacing: -0.01em;
                 }
 
                 .podium-dept {
                     font-size: 13px;
-                    color: #64748b;
+                    color: var(--text-muted);
                     font-weight: 700;
-                    margin-top: 4px;
+                    margin-top: 6px;
                     text-transform: uppercase;
+                    letter-spacing: 0.1em;
                 }
 
                 .podium-stats {
                     display: flex;
                     align-items: center;
-                    gap: 16px;
-                    margin-top: 24px;
-                    background: #f8fafc;
-                    padding: 12px 20px;
-                    border-radius: 12px;
-                    border: 1px solid #f1f5f9;
+                    gap: 20px;
+                    margin-top: 32px;
+                    background: rgba(255, 255, 255, 0.03);
+                    padding: 14px 24px;
+                    border-radius: 16px;
+                    border: 1px solid var(--glass-border);
                 }
 
                 .p-stat {
@@ -224,41 +238,43 @@ const Rankings = () => {
 
                 .p-val {
                     font-weight: 800;
-                    color: #0f172a;
-                    font-size: 15px;
+                    color: var(--text-main);
+                    font-size: 17px;
                 }
 
                 .p-label {
                     font-size: 11px;
-                    color: #64748b;
+                    color: var(--text-muted);
                     text-transform: uppercase;
-                    font-weight: 700;
+                    font-weight: 800;
+                    letter-spacing: 0.05em;
                 }
 
                 .p-sep {
                     width: 1px;
-                    height: 24px;
-                    background: #e2e8f0;
+                    height: 28px;
+                    background: var(--glass-border);
                 }
 
                 .rank-list-card {
-                    background: white;
+                    background: var(--glass);
+                    backdrop-filter: blur(12px);
+                    -webkit-backdrop-filter: blur(12px);
                     border-radius: 24px;
-                    border: 1px solid #e2e8f0;
+                    border: 1px solid var(--glass-border);
                     overflow: hidden;
-                    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
                 }
 
                 .rank-list-card .card-header {
-                    padding: 24px 32px;
-                    border-bottom: 1px solid #f1f5f9;
-                    background: #fff;
+                    padding: 32px;
+                    border-bottom: 1px solid var(--glass-border);
                 }
 
                 .rank-list-card .card-header h3 {
                     margin: 0;
-                    color: #0f172a;
+                    color: var(--text-main);
                     font-weight: 800;
+                    font-size: 20px;
                 }
 
                 .ranks-table {
@@ -268,53 +284,54 @@ const Rankings = () => {
                 }
 
                 .ranks-table th {
-                    padding: 16px 32px;
-                    background: #f8fafc;
-                    font-size: 12px;
-                    font-weight: 700;
-                    color: #475569;
+                    padding: 20px 32px;
+                    background: rgba(255, 255, 255, 0.01);
+                    font-size: 11px;
+                    font-weight: 800;
+                    color: var(--text-muted);
                     text-transform: uppercase;
-                    border-bottom: 1px solid #e2e8f0;
+                    letter-spacing: 0.1em;
+                    border-bottom: 2px solid var(--glass-border);
                 }
 
                 .ranks-table td {
-                    padding: 20px 32px;
-                    border-bottom: 1px solid #f1f5f9;
-                    font-size: 14px;
-                    color: #1e293b;
-                    font-weight: 500;
+                    padding: 24px 32px;
+                    border-bottom: 1px solid var(--glass-border);
+                    font-size: 15px;
+                    color: var(--text-secondary);
+                    font-weight: 600;
                 }
 
                 .top-rank {
-                    background: #fff;
+                    background: rgba(255, 255, 255, 0.01);
                 }
 
                 .rank-number {
-                    font-weight: 800;
-                    font-size: 14px;
+                    font-weight: 900;
+                    font-size: 15px;
                 }
 
                 .r-1 { color: #f59e0b; }
-                .r-2 { color: #64748b; }
+                .r-2 { color: #94a3b8; }
                 .r-3 { color: #d97706; }
 
                 .faculty-cell {
                     display: flex;
                     align-items: center;
-                    gap: 12px;
+                    gap: 16px;
                 }
 
                 .avatar-small {
-                    width: 32px;
-                    height: 32px;
-                    background: #f1f5f9;
-                    border-radius: 8px;
+                    width: 36px;
+                    height: 36px;
+                    background: rgba(139, 92, 246, 0.1);
+                    border-radius: 10px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     font-weight: 800;
-                    color: #1e293b;
-                    border: 1px solid #e2e8f0;
+                    color: var(--primary);
+                    border: 1px solid rgba(139, 92, 246, 0.2);
                 }
 
                 .rating-cell {
@@ -322,13 +339,13 @@ const Rankings = () => {
                     align-items: center;
                     gap: 8px;
                     font-weight: 800;
-                    color: #0f172a;
+                    color: var(--text-main);
                 }
 
-                .font-bold { font-weight: 700; color: #0f172a; }
+                .font-bold { font-weight: 800; color: var(--text-main); }
 
                 @media (max-width: 1024px) {
-                    .top-three { flex-direction: column; align-items: center; gap: 20px; }
+                    .top-three { flex-direction: column; align-items: center; gap: 32px; }
                     .pos-1, .pos-2, .pos-3 { width: 100%; margin: 0; order: initial; }
                 }
                 `

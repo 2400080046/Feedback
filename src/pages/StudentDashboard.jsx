@@ -100,6 +100,7 @@ const StudentDashboard = () => {
                     display: flex;
                     flex-direction: column;
                     gap: 32px;
+                    animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
                 }
 
                 .overview-row {
@@ -109,27 +110,38 @@ const StudentDashboard = () => {
                 }
 
                 .stat-card {
-                    background: white;
+                    background: var(--glass);
+                    backdrop-filter: blur(12px);
+                    -webkit-backdrop-filter: blur(12px);
                     padding: 24px;
-                    border-radius: 16px;
+                    border-radius: 24px;
                     display: flex;
                     align-items: center;
                     gap: 20px;
-                    border: 1px solid #e2e8f0;
+                    border: 1px solid var(--glass-border);
+                    transition: var(--transition);
+                }
+                
+                .stat-card:hover {
+                    transform: translateY(-4px);
+                    background: rgba(255, 255, 255, 0.05);
+                    border-color: var(--primary);
+                    box-shadow: 0 12px 24px -8px rgba(139, 92, 246, 0.2);
                 }
 
                 .stat-icon {
                     width: 56px;
                     height: 56px;
-                    border-radius: 14px;
+                    border-radius: 16px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
                 }
 
-                .stat-icon.pending { background: #fff7ed; color: #f97316; }
-                .stat-icon.submitted { background: #f0fdf4; color: #22c55e; }
-                .stat-icon.attendance { background: #eff6ff; color: #3b82f6; }
+                .stat-icon.pending { background: rgba(245, 158, 11, 0.1); color: var(--warning); }
+                .stat-icon.submitted { background: rgba(16, 185, 129, 0.1); color: var(--success); }
+                .stat-icon.attendance { background: rgba(6, 182, 212, 0.1); color: var(--secondary); }
 
                 .stat-text {
                     display: flex;
@@ -137,15 +149,17 @@ const StudentDashboard = () => {
                 }
 
                 .stat-label {
-                    font-size: 14px;
-                    color: #64748b;
-                    font-weight: 500;
+                    font-size: 13px;
+                    color: var(--text-secondary);
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    letter-spacing: 0.05em;
                 }
 
                 .stat-value {
-                    font-size: 24px;
+                    font-size: 28px;
                     font-weight: 800;
-                    color: #0f172a;
+                    color: var(--text-main);
                 }
 
                 .dashboard-main-grid {
@@ -155,61 +169,72 @@ const StudentDashboard = () => {
                 }
 
                 .content-panel {
-                    background: white;
-                    border-radius: 16px;
-                    border: 1px solid #e2e8f0;
+                    background: var(--glass);
+                    border-radius: 24px;
+                    border: 1px solid var(--glass-border);
                     overflow: hidden;
                     display: flex;
                     flex-direction: column;
                 }
 
                 .panel-header {
-                    padding: 24px;
-                    border-bottom: 1px solid #f1f5f9;
+                    padding: 24px 32px;
+                    border-bottom: 1px solid var(--glass-border);
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
+                    background: rgba(255, 255, 255, 0.01);
                 }
 
                 .panel-header h3 {
-                    font-size: 16px;
-                    font-weight: 700;
-                    color: #0f172a;
+                    font-size: 18px;
+                    font-weight: 800;
+                    color: var(--text-main);
+                    letter-spacing: -0.01em;
                 }
 
                 .view-all {
                     font-size: 13px;
-                    color: #2563eb;
-                    font-weight: 600;
+                    color: var(--primary);
+                    font-weight: 700;
                     text-decoration: none;
+                    transition: var(--transition);
                 }
+                
+                .view-all:hover { color: var(--secondary); text-decoration: underline; }
 
                 .pending-list, .history-list {
-                    padding: 12px;
+                    padding: 24px;
                     display: flex;
                     flex-direction: column;
-                    gap: 12px;
+                    gap: 16px;
                 }
 
                 .pending-item {
-                    padding: 16px;
-                    background: #f8fafc;
-                    border-radius: 12px;
+                    padding: 20px;
+                    background: rgba(255, 255, 255, 0.02);
+                    border-radius: 16px;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    border: 1px solid #f1f5f9;
+                    border: 1px solid var(--glass-border);
+                    transition: var(--transition);
+                }
+                
+                .pending-item:hover {
+                    background: rgba(255, 255, 255, 0.05);
+                    border-color: var(--primary);
                 }
 
                 .course-title {
                     font-weight: 700;
-                    color: #1e293b;
-                    font-size: 14px;
+                    color: var(--text-main);
+                    font-size: 15px;
                 }
 
                 .instructor-sub {
-                    font-size: 12px;
-                    color: #64748b;
+                    font-size: 13px;
+                    color: var(--text-secondary);
                     margin-top: 2px;
                 }
 
@@ -217,83 +242,96 @@ const StudentDashboard = () => {
                     display: flex;
                     flex-direction: column;
                     align-items: flex-end;
-                    gap: 8px;
+                    gap: 10px;
                 }
 
                 .deadline-badge {
                     font-size: 11px;
-                    font-weight: 700;
-                    color: #ef4444;
-                    background: #fef2f2;
-                    padding: 4px 8px;
-                    border-radius: 6px;
+                    font-weight: 800;
+                    color: var(--accent);
+                    background: rgba(244, 63, 94, 0.1);
+                    padding: 4px 10px;
+                    border-radius: 100px;
                     display: flex;
                     align-items: center;
                     gap: 4px;
+                    text-transform: uppercase;
                 }
 
                 .submit-btn {
-                    background: #0f172a;
+                    background: var(--grad-primary);
                     color: white;
                     text-decoration: none;
-                    padding: 6px 14px;
-                    border-radius: 8px;
+                    padding: 8px 18px;
+                    border-radius: 10px;
                     font-size: 13px;
-                    font-weight: 600;
+                    font-weight: 700;
                     display: flex;
                     align-items: center;
                     gap: 6px;
-                    transition: 0.2s;
+                    transition: var(--transition);
+                    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
                 }
 
-                .submit-btn:hover { background: #2563eb; }
+                .submit-btn:hover { 
+                    transform: translateY(-2px); 
+                    box-shadow: 0 8px 16px rgba(139, 92, 246, 0.3);
+                    filter: brightness(1.1);
+                }
 
                 .history-item {
-                    padding: 16px;
+                    padding: 20px;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    border-bottom: 1px solid #f1f5f9;
+                    border-bottom: 1px solid var(--glass-border);
                 }
 
                 .history-item:last-child { border-bottom: none; }
 
                 .history-course {
-                    font-weight: 600;
-                    color: #334155;
-                    font-size: 14px;
+                    font-weight: 700;
+                    color: var(--text-main);
+                    font-size: 15px;
                 }
 
                 .history-instr {
-                    font-size: 11px;
-                    color: #64748b;
+                    font-size: 12px;
+                    color: var(--text-secondary);
                     font-weight: 600;
-                    margin-top: 1px;
+                    margin-top: 2px;
                 }
                 
                 .history-date {
                     font-size: 12px;
-                    color: #94a3b8;
-                    margin-top: 2px;
+                    color: var(--text-muted);
+                    margin-top: 4px;
                 }
 
                 .score-ring {
-                    width: 36px;
-                    height: 36px;
+                    width: 42px;
+                    height: 42px;
                     border-radius: 50%;
-                    border: 2px solid #22c55e;
-                    color: #22c55e;
+                    background: rgba(16, 185, 129, 0.1);
+                    border: 1px solid rgba(16, 185, 129, 0.2);
+                    color: var(--success);
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    font-weight: 700;
-                    font-size: 13px;
+                    font-weight: 800;
+                    font-size: 14px;
+                    box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
                 }
 
                 @media (max-width: 1024px) {
                     .dashboard-main-grid {
                         grid-template-columns: 1fr;
                     }
+                }
+
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(20px); }
+                    to { opacity: 1; transform: translateY(0); }
                 }
             `}} />
     </div>

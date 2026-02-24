@@ -64,11 +64,11 @@ const PendingFeedback = () => {
             <style dangerouslySetInnerHTML={{
                 __html: `
                 .pending-feedback-page {
-                    animation: fadeIn 0.5s ease;
+                    animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
                 }
 
                 @keyframes fadeIn {
-                    from { opacity: 0; transform: translateY(10px); }
+                    from { opacity: 0; transform: translateY(20px); }
                     to { opacity: 1; transform: translateY(0); }
                 }
 
@@ -80,29 +80,32 @@ const PendingFeedback = () => {
                 }
 
                 .page-title {
-                    font-size: 28px;
+                    font-size: 32px;
                     font-weight: 800;
-                    color: #0f172a;
+                    color: var(--text-main);
                     margin: 0;
+                    letter-spacing: -0.02em;
                 }
 
                 .page-subtitle {
-                    color: #64748b;
-                    margin-top: 4px;
-                    font-size: 15px;
+                    color: var(--text-secondary);
+                    margin-top: 6px;
+                    font-size: 16px;
                 }
 
                 .header-badge {
                     display: flex;
                     align-items: center;
-                    gap: 8px;
-                    background: #fff7ed;
-                    color: #f97316;
-                    padding: 8px 16px;
+                    gap: 10px;
+                    background: rgba(245, 158, 11, 0.1);
+                    color: var(--warning);
+                    padding: 10px 20px;
                     border-radius: 99px;
                     font-size: 13px;
-                    font-weight: 600;
-                    border: 1px solid #ffedd5;
+                    font-weight: 800;
+                    border: 1px solid rgba(245, 158, 11, 0.2);
+                    text-transform: uppercase;
+                    letter-spacing: 0.05em;
                 }
 
                 .feedback-grid {
@@ -112,20 +115,23 @@ const PendingFeedback = () => {
                 }
 
                 .feedback-card {
-                    background: white;
-                    border: 1px solid #e2e8f0;
-                    border-radius: 20px;
-                    padding: 24px;
-                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    background: var(--glass);
+                    backdrop-filter: blur(12px);
+                    -webkit-backdrop-filter: blur(12px);
+                    border: 1px solid var(--glass-border);
+                    border-radius: 24px;
+                    padding: 32px;
+                    transition: var(--transition);
                     display: flex;
                     flex-direction: column;
-                    gap: 24px;
+                    gap: 28px;
                 }
 
                 .feedback-card:hover {
-                    box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.1);
-                    border-color: #2563eb;
-                    transform: translateY(-4px);
+                    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4);
+                    border-color: var(--primary);
+                    transform: translateY(-8px);
+                    background: rgba(255, 255, 255, 0.05);
                 }
 
                 .card-top {
@@ -136,104 +142,140 @@ const PendingFeedback = () => {
 
                 .course-info {
                     display: flex;
-                    gap: 16px;
+                    gap: 20px;
                 }
 
                 .course-icon {
-                    width: 48px;
-                    height: 48px;
-                    background: #f1f5f9;
-                    border-radius: 12px;
+                    width: 56px;
+                    height: 56px;
+                    background: rgba(255, 255, 255, 0.03);
+                    border-radius: 16px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    color: #475569;
+                    color: var(--primary);
+                    border: 1px solid var(--glass-border);
                 }
 
                 .course-name {
-                    font-size: 18px;
-                    font-weight: 700;
-                    color: #1e293b;
+                    font-size: 20px;
+                    font-weight: 800;
+                    color: var(--text-main);
                     margin: 0;
+                    letter-spacing: -0.01em;
                 }
 
                 .instructor-info {
                     display: flex;
                     align-items: center;
-                    gap: 6px;
-                    color: #64748b;
+                    gap: 8px;
+                    color: var(--text-secondary);
                     font-size: 14px;
-                    margin-top: 4px;
+                    margin-top: 6px;
+                    font-weight: 600;
                 }
 
                 .deadline-status {
                     display: flex;
                     align-items: center;
-                    gap: 6px;
-                    color: #ef4444;
-                    background: #fef2f2;
-                    padding: 4px 10px;
-                    border-radius: 6px;
-                    font-size: 12px;
-                    font-weight: 700;
+                    gap: 8px;
+                    color: var(--accent);
+                    background: rgba(244, 63, 94, 0.1);
+                    padding: 6px 14px;
+                    border-radius: 100px;
+                    font-size: 11px;
+                    font-weight: 800;
+                    border: 1px solid rgba(244, 63, 94, 0.2);
+                    text-transform: uppercase;
                 }
 
                 .card-footer {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    padding-top: 20px;
-                    border-top: 1px dashed #e2e8f0;
+                    padding-top: 24px;
+                    border-top: 1px solid var(--glass-border);
                 }
 
                 .status-indicator {
                     display: flex;
                     align-items: center;
-                    gap: 8px;
-                    font-size: 13px;
-                    font-weight: 500;
-                    color: #22c55e;
+                    gap: 10px;
+                    font-size: 12px;
+                    font-weight: 800;
+                    color: var(--success);
+                    text-transform: uppercase;
+                    letter-spacing: 0.05em;
                 }
 
                 .status-indicator .dot {
-                    width: 8px;
-                    height: 8px;
-                    background: #22c55e;
+                    width: 10px;
+                    height: 10px;
+                    background: var(--success);
                     border-radius: 50%;
-                    box-shadow: 0 0 0 3px #dcfce7;
+                    box-shadow: 0 0 10px var(--success);
+                    position: relative;
+                }
+                
+                .status-indicator .dot::after {
+                    content: '';
+                    position: absolute;
+                    width: 100%; height: 100%;
+                    background: inherit;
+                    border-radius: inherit;
+                    animation: pulse-sm 2s infinite;
+                }
+                
+                @keyframes pulse-sm {
+                    0% { transform: scale(1); opacity: 0.5; }
+                    100% { transform: scale(3); opacity: 0; }
                 }
 
                 .action-button {
                     display: flex;
                     align-items: center;
-                    gap: 8px;
-                    background: #0f172a;
+                    gap: 10px;
+                    background: var(--grad-primary);
                     color: white;
-                    padding: 10px 20px;
-                    border-radius: 12px;
+                    padding: 12px 24px;
+                    border-radius: 14px;
                     font-size: 14px;
-                    font-weight: 600;
+                    font-weight: 800;
                     text-decoration: none;
-                    transition: all 0.2s;
+                    transition: var(--transition);
+                    box-shadow: 0 10px 20px -5px rgba(139, 92, 246, 0.3);
                 }
 
                 .action-button:hover {
-                    background: #2563eb;
-                    gap: 12px;
+                    box-shadow: 0 20px 30px -10px rgba(139, 92, 246, 0.4);
+                    transform: translateX(4px);
+                    filter: brightness(1.1);
                 }
 
                 .empty-state {
                     grid-column: 1 / -1;
-                    padding: 80px;
-                    background: #f8fafc;
-                    border: 2px dashed #e2e8f0;
-                    border-radius: 24px;
+                    padding: 100px 40px;
+                    background: var(--glass);
+                    border: 2px dashed var(--glass-border);
+                    border-radius: 32px;
                     text-align: center;
                 }
 
                 .empty-icon {
-                    font-size: 48px;
-                    margin-bottom: 16px;
+                    font-size: 64px;
+                    margin-bottom: 24px;
+                    opacity: 0.5;
+                }
+                
+                .empty-state h3 {
+                    font-size: 20px;
+                    font-weight: 800;
+                    color: var(--text-main);
+                    margin-bottom: 8px;
+                }
+                
+                .empty-state p {
+                    color: var(--text-secondary);
                 }
 
                 @media (max-width: 640px) {

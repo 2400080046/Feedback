@@ -185,7 +185,7 @@ const Login = () => {
           display: flex;
           align-items: center;
           gap: 12px;
-          color: #94a3b8;
+          color: var(--text-muted);
           font-size: 10px;
           font-weight: 800;
           letter-spacing: 0.1em;
@@ -195,7 +195,7 @@ const Login = () => {
           content: '';
           flex: 1;
           height: 1px;
-          background: #e2e8f0;
+          background: var(--glass-border);
         }
 
         .proto-buttons {
@@ -209,24 +209,28 @@ const Login = () => {
           border-radius: 8px;
           font-size: 11px;
           font-weight: 700;
-          border: 1px solid #e2e8f0;
-          background: white;
+          border: 1px solid var(--glass-border);
+          background: rgba(255, 255, 255, 0.03);
           cursor: pointer;
-          transition: 0.2s;
-          color: #475569;
+          transition: var(--transition);
+          color: var(--text-secondary);
         }
 
         .proto-btn:hover {
-          background: #f8fafc;
-          border-color: #cbd5e1;
+          background: rgba(255, 255, 255, 0.08);
+          color: var(--text-main);
+          border-color: var(--primary);
         }
 
-        .proto-btn.student:hover { border-color: #22c55e; color: #16a34a; }
-        .proto-btn.instructor:hover { border-color: #3b82f6; color: #2563eb; }
-        .proto-btn.admin:hover { border-color: #6366f1; color: #4f46e5; }
+        .proto-btn.student:hover { border-color: var(--success); color: var(--success); }
+        .proto-btn.instructor:hover { border-color: var(--secondary); color: var(--secondary); }
+        .proto-btn.admin:hover { border-color: var(--primary); color: var(--primary); }
+        
         .academic-container {
           min-height: 100vh;
-          background: #f8fafc;
+          background-color: var(--bg-main);
+          background-image: var(--grad-mesh);
+          background-attachment: fixed;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -235,16 +239,20 @@ const Login = () => {
         }
 
         .academic-card {
-          background: white;
+          background: var(--glass);
+          backdrop-filter: blur(24px);
+          -webkit-backdrop-filter: blur(24px);
           width: 100%;
           max-width: 480px;
           padding: 48px;
-          border-radius: 12px;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+          border-radius: 24px;
+          border: 1px solid var(--glass-border);
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
           display: flex;
           flex-direction: column;
           gap: 32px;
           position: relative;
+          animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .academic-header {
@@ -258,30 +266,32 @@ const Login = () => {
         .logo-badge {
           width: 64px;
           height: 64px;
-          border-radius: 18px;
-          background: linear-gradient(135deg, #2563eb, #4f46e5);
+          border-radius: 20px;
+          background: var(--grad-primary);
           display: flex;
           align-items: center;
           justify-content: center;
           color: white;
+          box-shadow: 0 8px 16px rgba(139, 92, 246, 0.3);
         }
 
         .academic-header h1 {
-          font-size: 24px;
+          font-size: 28px;
           font-weight: 800;
-          color: #0f172a;
+          color: var(--text-main);
           margin: 0;
+          letter-spacing: -0.02em;
         }
 
         .academic-header p {
-          color: #64748b;
+          color: var(--text-secondary);
           font-size: 15px;
         }
 
         .academic-form {
           display: flex;
           flex-direction: column;
-          gap: 24px;
+          gap: 20px;
         }
 
         .field-unit {
@@ -293,23 +303,28 @@ const Login = () => {
         .field-unit label {
           font-size: 11px;
           font-weight: 700;
-          color: #64748b;
-          letter-spacing: 0.05em;
+          color: var(--text-secondary);
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
         }
 
         .academic-input-box {
           display: flex;
           align-items: center;
-          background: #f1f5f9;
-          border-radius: 10px;
+          background: rgba(255, 255, 255, 0.03);
+          border-radius: 12px;
           height: 52px;
           padding: 0 16px;
           gap: 12px;
-          transition: 0.2s ease;
+          transition: var(--transition);
+          border: 1px solid var(--glass-border);
         }
 
         .academic-input-box:focus-within {
-          background: #e2e8f0;
+          background: rgba(255, 255, 255, 0.06);
+          border-color: var(--primary);
+          box-shadow: 0 0 0 4px var(--glass-glow);
+          transform: translateY(-1px);
         }
 
         .academic-input-box input {
@@ -317,69 +332,105 @@ const Login = () => {
           background: transparent;
           border: none;
           outline: none;
-          color: #1e293b;
+          color: var(--text-main);
           font-size: 15px;
           font-weight: 500;
         }
 
-        .academic-input-box svg { color: #94a3b8; }
+        .academic-input-box svg { color: var(--text-muted); transition: var(--transition); }
+        .academic-input-box:focus-within svg { color: var(--primary); }
 
         .academic-primary-btn {
-          background: #2563eb;
+          background: var(--grad-primary);
           color: white;
           height: 52px;
-          border-radius: 10px;
-          font-weight: 700;
+          border-radius: 12px;
+          font-weight: 800;
           font-size: 15px;
           display: flex;
           align-items: center;
           justify-content: center;
           gap: 8px;
-          transition: 0.2s;
+          transition: var(--transition);
+          box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.3);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          margin-top: 8px;
         }
 
-        .academic-primary-btn:hover { background: #1d4ed8; }
+        .academic-primary-btn:hover { 
+          transform: translateY(-2px); 
+          box-shadow: 0 20px 25px -5px rgba(139, 92, 246, 0.4);
+          filter: brightness(1.1);
+        }
+        
+        .academic-primary-btn:disabled {
+          opacity: 0.7;
+          transform: none;
+        }
 
         .academic-footer {
           text-align: center;
           font-size: 14px;
-          color: #64748b;
+          color: var(--text-secondary);
         }
 
         .academic-footer a {
-          color: #2563eb;
+          color: var(--primary);
           font-weight: 700;
           text-decoration: none;
+          transition: var(--transition);
+        }
+        
+        .academic-footer a:hover {
+          color: var(--secondary);
+          text-decoration: underline;
         }
 
         .floating-toggles {
           display: flex;
-          justify-content: flex-end;
+          justify-content: center;
           gap: 8px;
-          position: absolute;
-          bottom: 12px;
-          right: 24px;
+          border-top: 1px solid var(--glass-border);
+          padding-top: 24px;
+          margin-top: 16px;
         }
 
         .role-pill {
-          padding: 6px 14px;
-          border-radius: 8px;
+          padding: 8px 16px;
+          border-radius: 100px;
           font-size: 11px;
           font-weight: 800;
-          color: #64748b;
-          background: #f8fafc;
-          border: 1px solid #e2e8f0;
-          transition: 0.2s;
+          color: var(--text-secondary);
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid var(--glass-border);
+          transition: var(--transition);
+          letter-spacing: 0.05em;
         }
 
         .role-pill.active {
-          background: #2563eb;
+          background: var(--grad-primary);
           color: white;
-          border-color: #2563eb;
+          border: none;
+          box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
         }
 
-        .field-msg-err { font-size: 12px; color: #ef4444; margin-top: 4px; font-weight: 500; }
-        .academic-alert { padding: 12px; background: #fef2f2; border: 1px solid #fee2e2; border-radius: 8px; color: #ef4444; font-size: 14px; text-align: center; font-weight: 500; }
+        .field-msg-err { font-size: 12px; color: var(--danger); margin-top: 4px; font-weight: 500; }
+        .academic-alert { 
+          padding: 12px; 
+          background: rgba(239, 68, 68, 0.1); 
+          border: 1px solid rgba(239, 68, 68, 0.2); 
+          border-radius: 12px; 
+          color: var(--danger); 
+          font-size: 14px; 
+          text-align: center; 
+          font-weight: 500; 
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
 
         @keyframes shake {
           0%, 100% { transform: translateX(0); }
@@ -387,6 +438,8 @@ const Login = () => {
           75% { transform: translateX(8px); }
         }
         .animate-shake { animation: shake 0.4s ease-in-out; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .spinner { animation: spin 1s linear infinite; }
       `}} />
     </div>
   );

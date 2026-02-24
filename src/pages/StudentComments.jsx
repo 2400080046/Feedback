@@ -106,11 +106,11 @@ const StudentComments = () => {
             <style dangerouslySetInnerHTML={{
                 __html: `
                 .comments-page {
-                    animation: fadeIn 0.5s ease-out;
+                    animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
                 }
 
                 @keyframes fadeIn {
-                    from { opacity: 0; transform: translateY(10px); }
+                    from { opacity: 0; transform: translateY(20px); }
                     to { opacity: 1; transform: translateY(0); }
                 }
 
@@ -122,88 +122,109 @@ const StudentComments = () => {
                 }
 
                 .page-title {
-                    font-size: 28px;
+                    font-size: 32px;
                     font-weight: 800;
-                    color: #0f172a;
+                    color: var(--text-main);
                     margin: 0;
+                    letter-spacing: -0.02em;
                 }
 
                 .page-subtitle {
-                    color: #64748b;
-                    margin-top: 4px;
-                    font-size: 15px;
+                    color: var(--text-secondary);
+                    margin-top: 6px;
+                    font-size: 16px;
                 }
 
                 .search-bar {
                     display: flex;
                     align-items: center;
                     gap: 12px;
-                    background: white;
-                    border: 1px solid #e2e8f0;
-                    padding: 10px 20px;
-                    border-radius: 12px;
+                    background: var(--glass);
+                    border: 1px solid var(--glass-border);
+                    padding: 12px 20px;
+                    border-radius: 14px;
                     width: 320px;
+                    backdrop-filter: blur(12px);
+                    transition: var(--transition);
+                }
+                
+                .search-bar:focus-within {
+                    border-color: var(--primary);
+                    background: rgba(255, 255, 255, 0.06);
+                    box-shadow: 0 0 0 4px var(--glass-glow);
                 }
 
                 .search-bar input {
+                    background: transparent;
                     border: none;
                     outline: none;
-                    color: #0f172a;
-                    font-size: 14px;
+                    color: var(--text-main);
+                    font-size: 15px;
                     width: 100%;
+                    font-weight: 600;
                 }
+                
+                .search-bar input::placeholder { color: var(--text-muted); }
+                .search-bar svg { color: var(--text-muted); }
 
                 .comments-layout {
                     display: grid;
-                    grid-template-columns: 300px 1fr;
+                    grid-template-columns: 320px 1fr;
                     gap: 32px;
                 }
 
                 .filter-card {
-                    background: white;
-                    border-radius: 20px;
-                    border: 1px solid #e2e8f0;
-                    padding: 24px;
+                    background: var(--glass);
+                    backdrop-filter: blur(12px);
+                    -webkit-backdrop-filter: blur(12px);
+                    border-radius: 24px;
+                    border: 1px solid var(--glass-border);
+                    padding: 32px;
                     position: sticky;
                     top: 24px;
+                    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.2);
                 }
 
                 .filter-card h3 {
-                    font-size: 16px;
-                    font-weight: 700;
-                    margin-bottom: 20px;
+                    font-size: 18px;
+                    font-weight: 800;
+                    color: var(--text-main);
+                    margin-bottom: 24px;
+                    letter-spacing: -0.01em;
                 }
 
                 .sentiment-stat {
-                    margin-bottom: 16px;
+                    margin-bottom: 20px;
                 }
 
                 .stat-row {
                     display: flex;
                     justify-content: space-between;
                     font-size: 13px;
-                    font-weight: 600;
-                    margin-bottom: 6px;
+                    font-weight: 700;
+                    margin-bottom: 8px;
                 }
 
                 .stat-bar {
-                    height: 6px;
-                    background: #f1f5f9;
-                    border-radius: 3px;
+                    height: 8px;
+                    background: rgba(255, 255, 255, 0.03);
+                    border-radius: 4px;
+                    overflow: hidden;
                 }
 
                 .fill {
                     height: 100%;
-                    border-radius: 3px;
+                    border-radius: 4px;
+                    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
                 }
 
-                .fill.positive { background: #22c55e; }
-                .fill.neutral { background: #f59e0b; }
-                .fill.negative { background: #ef4444; }
+                .fill.positive { background: var(--success); }
+                .fill.neutral { background: var(--warning); }
+                .fill.negative { background: var(--danger); }
 
-                .label.positive { color: #22c55e; }
-                .label.neutral { color: #f59e0b; }
-                .label.negative { color: #ef4444; }
+                .label.positive { color: var(--success); }
+                .label.neutral { color: var(--warning); }
+                .label.negative { color: var(--danger); }
 
                 .comments-feed {
                     display: flex;
@@ -212,117 +233,136 @@ const StudentComments = () => {
                 }
 
                 .comment-card {
-                    background: white;
-                    border-radius: 20px;
-                    border: 1px solid #e2e8f0;
-                    padding: 24px;
-                    transition: 0.2s;
+                    background: var(--glass);
+                    backdrop-filter: blur(12px);
+                    -webkit-backdrop-filter: blur(12px);
+                    border-radius: 24px;
+                    border: 1px solid var(--glass-border);
+                    padding: 32px;
+                    transition: var(--transition);
                 }
 
                 .comment-card:hover {
-                    box-shadow: 0 10px 20px -10px rgba(0,0,0,0.1);
-                    transform: translateY(-2px);
+                    border-color: var(--primary);
+                    background: rgba(255, 255, 255, 0.05);
+                    transform: translateY(-4px);
+                    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.2);
                 }
 
                 .card-top {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    margin-bottom: 20px;
+                    margin-bottom: 24px;
                 }
 
                 .student-info {
                     display: flex;
                     align-items: center;
-                    gap: 12px;
+                    gap: 16px;
                 }
 
                 .avatar-mini {
-                    width: 36px;
-                    height: 36px;
-                    background: #f1f5f9;
-                    color: #475569;
-                    border-radius: 10px;
+                    width: 44px;
+                    height: 44px;
+                    background: rgba(139, 92, 246, 0.1);
+                    color: var(--primary);
+                    border-radius: 12px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    font-weight: 700;
-                    font-size: 14px;
+                    font-weight: 800;
+                    font-size: 16px;
+                    border: 1px solid rgba(139, 92, 246, 0.2);
                 }
 
                 .student-info .name {
-                    font-weight: 700;
-                    color: #0f172a;
-                    font-size: 14px;
+                    font-weight: 800;
+                    color: var(--text-main);
+                    font-size: 16px;
                     margin: 0;
+                    letter-spacing: -0.01em;
                 }
 
                 .tags-row {
                     display: flex;
                     flex-direction: column;
-                    gap: 2px;
-                    margin-top: 2px;
+                    gap: 4px;
+                    margin-top: 4px;
                 }
 
                 .course-tag-new {
-                    font-size: 11px;
+                    font-size: 12px;
                     font-weight: 700;
-                    color: #2563eb;
+                    color: var(--secondary);
                 }
 
                 .instructor-tag {
                     font-size: 11px;
                     font-weight: 600;
-                    color: #64748b;
+                    color: var(--text-muted);
                 }
 
                 .sentiment-badge {
                     display: flex;
                     align-items: center;
-                    gap: 6px;
-                    padding: 4px 10px;
-                    border-radius: 99px;
+                    gap: 8px;
+                    padding: 6px 14px;
+                    border-radius: 100px;
                     font-size: 12px;
-                    font-weight: 700;
+                    font-weight: 800;
+                    text-transform: uppercase;
+                    letter-spacing: 0.05em;
                 }
 
-                .positive .sentiment-badge { background: #f0fdf4; color: #22c55e; }
-                .neutral .sentiment-badge { background: #fffbeb; color: #f59e0b; }
-                .negative .sentiment-badge { background: #fef2f2; color: #ef4444; }
+                .positive .sentiment-badge { background: rgba(34, 197, 94, 0.1); color: var(--success); border: 1px solid rgba(34, 197, 94, 0.2); }
+                .neutral .sentiment-badge { background: rgba(245, 158, 11, 0.1); color: var(--warning); border: 1px solid rgba(245, 158, 11, 0.2); }
+                .negative .sentiment-badge { background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid rgba(239, 68, 68, 0.2); }
 
                 .comment-body {
-                    font-size: 15px;
-                    color: #1e293b;
+                    font-size: 16px;
+                    color: var(--text-secondary);
                     font-style: italic;
                     line-height: 1.6;
-                    margin-bottom: 20px;
+                    margin-bottom: 24px;
+                    padding: 0 4px;
                 }
 
                 .card-footer {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    padding-top: 16px;
-                    border-top: 1px dashed #f1f5f9;
+                    padding-top: 24px;
+                    border-top: 1px solid var(--glass-border);
                 }
 
                 .score-label {
-                    font-size: 12px;
-                    color: #64748b;
+                    font-size: 13px;
+                    color: var(--text-muted);
+                    font-weight: 600;
                 }
+                
+                .score-label strong { color: var(--text-secondary); font-weight: 800; }
 
                 .action-link {
-                    background: none;
+                    background: transparent;
                     border: none;
-                    color: #2563eb;
-                    font-weight: 600;
-                    font-size: 13px;
+                    color: var(--primary);
+                    font-weight: 800;
+                    font-size: 14px;
                     cursor: pointer;
+                    transition: var(--transition);
+                    text-transform: uppercase;
+                    letter-spacing: 0.05em;
                 }
+                
+                .action-link:hover { color: var(--secondary); transform: translateX(4px); }
 
                 @media (max-width: 1024px) {
                     .comments-layout { grid-template-columns: 1fr; }
-                    .filter-card { position: relative; top: 0; }
+                    .filter-card { position: relative; top: 0; margin-bottom: 24px; }
+                    .search-bar { width: 100%; margin-top: 16px; }
+                    .page-header { flex-direction: column; align-items: stretch; }
                 }
                 `
             }} />

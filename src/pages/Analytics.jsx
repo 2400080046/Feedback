@@ -105,17 +105,19 @@ const Analytics = () => {
           flex-direction: column;
           gap: 1.5rem;
           padding-bottom: 2rem;
-          animation: fadeIn 0.5s ease-out;
+          animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .toolbar {
-          padding: 1.5rem;
+          padding: 1.5rem 2rem;
           display: flex;
           justify-content: space-between;
           align-items: center;
-          background: white;
-          border-radius: 16px;
-          border: 1px solid #e2e8f0;
+          background: var(--glass);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border-radius: 20px;
+          border: 1px solid var(--glass-border);
         }
 
         .filters {
@@ -124,22 +126,30 @@ const Analytics = () => {
         }
 
         .filter-pill {
-          padding: 0.5rem 1.25rem;
-          background: #f1f5f9;
-          color: #475569;
-          border-radius: 99px;
+          padding: 0.6rem 1.4rem;
+          background: rgba(255, 255, 255, 0.03);
+          color: var(--text-secondary);
+          border-radius: 100px;
           font-size: 0.875rem;
-          font-weight: 600;
+          font-weight: 700;
           display: flex;
           align-items: center;
-          gap: 0.5rem;
-          border: 1px solid #e2e8f0;
+          gap: 0.6rem;
+          border: 1px solid var(--glass-border);
+          transition: var(--transition);
+        }
+
+        .filter-pill:hover {
+          background: rgba(255, 255, 255, 0.08);
+          color: var(--text-main);
+          border-color: var(--primary);
         }
 
         .filter-pill.active {
-          background: #eff6ff;
-          color: #2563eb;
-          border-color: #bfdbfe;
+          background: var(--grad-primary);
+          color: white;
+          border: none;
+          box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
         }
 
         .actions {
@@ -148,27 +158,43 @@ const Analytics = () => {
         }
 
         .icon-btn-outline {
-          width: 42px;
-          height: 42px;
+          width: 44px;
+          height: 44px;
           display: flex;
           align-items: center;
           justify-content: center;
-          background: white;
-          border: 1px solid #e2e8f0;
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid var(--glass-border);
           border-radius: 12px;
-          color: #64748b;
+          color: var(--text-secondary);
+          transition: var(--transition);
+        }
+        
+        .icon-btn-outline:hover {
+          background: rgba(255, 255, 255, 0.08);
+          color: var(--primary);
+          border-color: var(--primary);
         }
 
         .download-btn {
           padding: 0 1.5rem;
-          background: #0f172a;
+          background: var(--grad-primary);
           color: white;
           border-radius: 12px;
+          border: none;
           display: flex;
           align-items: center;
           gap: 0.75rem;
-          font-weight: 700;
+          font-weight: 800;
           font-size: 0.875rem;
+          transition: var(--transition);
+          box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25);
+        }
+        
+        .download-btn:hover {
+          transform: translateY(-2px);
+          filter: brightness(1.1);
+          box-shadow: 0 8px 16px rgba(139, 92, 246, 0.3);
         }
 
         .analytics-grid {
@@ -178,10 +204,13 @@ const Analytics = () => {
         }
 
         .chart-card, .stats-list, .report-table-container {
-          background: white;
-          border-radius: 20px;
-          border: 1px solid #e2e8f0;
-          padding: 2rem;
+          background: var(--glass);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border-radius: 24px;
+          border: 1px solid var(--glass-border);
+          padding: 2.25rem;
+          transition: var(--transition);
         }
 
         .chart-card {
@@ -193,8 +222,9 @@ const Analytics = () => {
         .chart-header h3, .stats-list h3, .report-table-container h3 {
           font-size: 1.125rem;
           font-weight: 800;
-          color: #0f172a;
+          color: var(--text-main);
           margin-bottom: 1.5rem;
+          letter-spacing: -0.01em;
         }
 
         .chart-header {
@@ -206,17 +236,19 @@ const Analytics = () => {
 
         .trend-label {
           font-size: 0.875rem;
-          font-weight: 700;
+          font-weight: 800;
           display: flex;
           align-items: center;
           gap: 0.25rem;
-          padding: 4px 10px;
-          border-radius: 99px;
+          padding: 6px 14px;
+          border-radius: 100px;
+          text-transform: uppercase;
         }
 
         .trend-label.positive { 
-          color: #059669; 
-          background: #ecfdf5;
+          color: var(--success); 
+          background: rgba(16, 185, 129, 0.1);
+          box-shadow: 0 0 12px rgba(16, 185, 129, 0.1);
         }
 
         .bar-chart {
@@ -225,7 +257,7 @@ const Analytics = () => {
           align-items: flex-end;
           justify-content: space-between;
           padding: 0 1rem;
-          gap: 1rem;
+          gap: 1.25rem;
         }
 
         .bar-group {
@@ -240,17 +272,19 @@ const Analytics = () => {
 
         .bar {
           width: 100%;
-          max-width: 48px;
-          background: linear-gradient(180deg, #6366f1 0%, #a855f7 100%);
-          border-radius: 8px 8px 0 0;
+          max-width: 42px;
+          background: var(--grad-primary);
+          border-radius: 10px 10px 0 0;
           position: relative;
           cursor: pointer;
-          transition: all 0.3s ease;
+          transition: var(--transition);
+          box-shadow: 0 0 16px rgba(139, 92, 246, 0.15);
         }
 
         .bar:hover {
-          filter: brightness(1.1);
-          transform: scaleX(1.05);
+          filter: brightness(1.2);
+          transform: scaleX(1.1);
+          box-shadow: 0 0 24px rgba(139, 92, 246, 0.3);
         }
 
         .bar-tooltip {
@@ -258,58 +292,71 @@ const Analytics = () => {
           top: -35px;
           left: 50%;
           transform: translateX(-50%);
-          background: #0f172a;
-          color: white;
-          padding: 4px 8px;
-          border-radius: 6px;
+          background: var(--bg-card);
+          color: var(--text-main);
+          padding: 6px 12px;
+          border-radius: 8px;
           font-size: 0.75rem;
           font-weight: 800;
           opacity: 0;
           pointer-events: none;
+          border: 1px solid var(--glass-border);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+          transition: var(--transition);
         }
 
         .bar:hover .bar-tooltip {
           opacity: 1;
+          top: -45px;
         }
 
         .bar-label {
-          font-size: 0.75rem;
-          color: #64748b;
-          font-weight: 700;
+          font-size: 11px;
+          color: var(--text-muted);
+          font-weight: 800;
           text-transform: uppercase;
+          letter-spacing: 0.05em;
         }
 
         .category-items {
           display: flex;
           flex-direction: column;
-          gap: 1.5rem;
+          gap: 1.75rem;
         }
 
         .category-item {
           display: flex;
           flex-direction: column;
-          gap: 0.75rem;
+          gap: 0.875rem;
         }
 
         .category-info {
           display: flex;
           justify-content: space-between;
           font-size: 0.875rem;
-          font-weight: 700;
-          color: #1e293b;
+          font-weight: 800;
+          color: var(--text-secondary);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
         }
 
         .progress-bg {
-          height: 8px;
-          background: #f1f5f9;
-          border-radius: 4px;
+          height: 10px;
+          background: rgba(255, 255, 255, 0.03);
+          border-radius: 100px;
           overflow: hidden;
+          border: 1px solid var(--glass-border);
         }
 
         .progress-fill {
           height: 100%;
-          background: #2563eb;
-          border-radius: 4px;
+          background: var(--grad-primary);
+          border-radius: 100px;
+          box-shadow: 0 0 12px rgba(139, 92, 246, 0.3);
+        }
+
+        .report-table-container {
+          margin-top: 1rem;
         }
 
         .report-table {
@@ -319,34 +366,36 @@ const Analytics = () => {
         }
 
         .report-table th {
-          padding: 1rem;
-          border-bottom: 2px solid #f1f5f9;
-          color: #64748b;
-          font-size: 0.75rem;
-          font-weight: 700;
+          padding: 1.25rem 1rem;
+          border-bottom: 2px solid var(--glass-border);
+          color: var(--text-muted);
+          font-size: 11px;
+          font-weight: 800;
           text-transform: uppercase;
+          letter-spacing: 0.1em;
         }
 
         .report-table td {
-          padding: 1.5rem 1rem;
-          border-bottom: 1px solid #f1f5f9;
-          font-size: 0.875rem;
-          color: #1e293b;
+          padding: 1.75rem 1rem;
+          border-bottom: 1px solid var(--glass-border);
+          font-size: 0.925rem;
+          color: var(--text-secondary);
         }
 
         .report-table td strong {
-            color: #0f172a;
+            color: var(--text-main);
             font-weight: 800;
         }
 
         .rating-pill {
           width: fit-content;
-          padding: 0.35rem 1rem;
-          background: #f0fdf4;
-          color: #16a34a;
-          border-radius: 99px;
+          padding: 0.4rem 1.25rem;
+          background: rgba(16, 185, 129, 0.1);
+          color: var(--success);
+          border-radius: 100px;
           font-weight: 800;
           font-size: 0.875rem;
+          border: 1px solid rgba(16, 185, 129, 0.2);
         }
 
         .participation-cell {
@@ -356,21 +405,30 @@ const Analytics = () => {
         }
 
         .participation-cell span {
-            font-weight: 700;
-            color: #475569;
+            font-weight: 800;
+            color: var(--text-main);
+            width: 40px;
         }
 
         .mini-progress {
-          width: 80px;
-          height: 6px;
-          background: #f1f5f9;
-          border-radius: 3px;
+          width: 100px;
+          height: 8px;
+          background: rgba(255, 255, 255, 0.03);
+          border-radius: 100px;
+          overflow: hidden;
+          border: 1px solid var(--glass-border);
         }
 
         .mini-progress div {
           height: 100%;
-          background: #2563eb;
-          border-radius: 3px;
+          background: var(--secondary);
+          border-radius: 100px;
+          box-shadow: 0 0 8px rgba(6, 182, 212, 0.3);
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
         }
 
         @media (max-width: 1024px) {

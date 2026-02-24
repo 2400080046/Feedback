@@ -140,11 +140,11 @@ const ClassResults = () => {
             <style dangerouslySetInnerHTML={{
                 __html: `
                 .class-results-page {
-                    animation: fadeIn 0.5s ease-out;
+                    animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
                 }
 
                 @keyframes fadeIn {
-                    from { opacity: 0; transform: translateY(10px); }
+                    from { opacity: 0; transform: translateY(20px); }
                     to { opacity: 1; transform: translateY(0); }
                 }
 
@@ -153,63 +153,78 @@ const ClassResults = () => {
                 }
 
                 .page-title {
-                    font-size: 28px;
+                    font-size: 32px;
                     font-weight: 800;
-                    color: #0f172a;
+                    color: var(--text-main);
                     margin: 0;
+                    letter-spacing: -0.02em;
                 }
 
                 .page-subtitle {
-                    color: #64748b;
-                    margin-top: 4px;
-                    font-size: 15px;
+                    color: var(--text-secondary);
+                    margin-top: 6px;
+                    font-size: 16px;
                 }
 
                 .stats-row {
                     display: grid;
                     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-                    gap: 20px;
+                    gap: 24px;
                     margin-bottom: 32px;
                 }
 
                 .mini-card {
-                    background: white;
-                    padding: 20px;
-                    border-radius: 16px;
+                    background: var(--glass);
+                    backdrop-filter: blur(12px);
+                    -webkit-backdrop-filter: blur(12px);
+                    padding: 24px;
+                    border-radius: 20px;
                     display: flex;
                     align-items: center;
-                    gap: 16px;
-                    border: 1px solid #e2e8f0;
+                    gap: 20px;
+                    border: 1px solid var(--glass-border);
+                    transition: var(--transition);
+                }
+                
+                .mini-card:hover {
+                    transform: translateY(-4px);
+                    background: rgba(255, 255, 255, 0.05);
+                    border-color: var(--primary);
                 }
 
                 .card-icon {
-                    width: 44px;
-                    height: 44px;
-                    border-radius: 12px;
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 14px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
                 }
 
-                .highlight-blue .card-icon { background: #eff6ff; color: #2563eb; }
-                .highlight-purple .card-icon { background: #f5f3ff; color: #8b5cf6; }
-                .highlight-green .card-icon { background: #f0fdf4; color: #22c55e; }
+                .highlight-blue .card-icon { background: rgba(139, 92, 246, 0.1); color: var(--primary); }
+                .highlight-purple .card-icon { background: rgba(236, 72, 153, 0.1); color: var(--secondary); }
+                .highlight-green .card-icon { background: rgba(6, 182, 212, 0.1); color: var(--accent); }
 
                 .card-data {
                     display: flex;
                     flex-direction: column;
+                    gap: 4px;
                 }
 
                 .card-data .label {
                     font-size: 13px;
-                    color: #64748b;
-                    font-weight: 500;
+                    color: var(--text-secondary);
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 0.05em;
                 }
 
                 .card-data .value {
-                    font-size: 20px;
+                    font-size: 24px;
                     font-weight: 800;
-                    color: #0f172a;
+                    color: var(--text-main);
+                    letter-spacing: -0.01em;
                 }
 
                 .results-grid {
@@ -219,10 +234,12 @@ const ClassResults = () => {
                 }
 
                 .chart-panel, .table-panel {
-                    background: white;
-                    border-radius: 20px;
-                    border: 1px solid #e2e8f0;
-                    padding: 24px;
+                    background: var(--glass);
+                    backdrop-filter: blur(12px);
+                    -webkit-backdrop-filter: blur(12px);
+                    border-radius: 24px;
+                    border: 1px solid var(--glass-border);
+                    padding: 32px;
                 }
 
                 .table-panel {
@@ -230,10 +247,11 @@ const ClassResults = () => {
                 }
 
                 .panel-header h3 {
-                    font-size: 16px;
-                    font-weight: 700;
-                    color: #0f172a;
-                    margin-bottom: 24px;
+                    font-size: 18px;
+                    font-weight: 800;
+                    color: var(--text-main);
+                    margin-bottom: 32px;
+                    letter-spacing: -0.01em;
                 }
 
                 .chart-container {
@@ -247,19 +265,20 @@ const ClassResults = () => {
                 }
 
                 .results-table th {
-                    padding: 12px 16px;
-                    font-size: 12px;
-                    font-weight: 700;
-                    color: #94a3b8;
+                    padding: 16px;
+                    font-size: 11px;
+                    font-weight: 800;
+                    color: var(--text-muted);
                     text-transform: uppercase;
-                    border-bottom: 1px solid #f1f5f9;
+                    border-bottom: 2px solid var(--glass-border);
+                    letter-spacing: 0.1em;
                 }
 
                 .results-table td {
-                    padding: 16px;
-                    font-size: 14px;
-                    color: #1e293b;
-                    border-bottom: 1px solid #f1f5f9;
+                    padding: 24px 16px;
+                    font-size: 15px;
+                    color: var(--text-secondary);
+                    border-bottom: 1px solid var(--glass-border);
                 }
 
                 .results-table tr:last-child td {
@@ -267,49 +286,53 @@ const ClassResults = () => {
                 }
 
                 .rating-pill {
-                    background: #0f172a;
+                    background: var(--grad-primary);
                     color: white;
-                    padding: 4px 12px;
-                    border-radius: 99px;
+                    padding: 4px 14px;
+                    border-radius: 100px;
                     display: inline-flex;
-                    font-weight: 700;
+                    font-weight: 800;
                     font-size: 13px;
+                    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
                 }
 
                 .course-cell-main {
                     display: flex;
                     align-items: center;
-                    gap: 12px;
+                    gap: 14px;
                 }
 
                 .code-pill {
-                    background: #eff6ff;
-                    color: #2563eb;
-                    padding: 2px 8px;
-                    border-radius: 6px;
+                    background: rgba(139, 92, 246, 0.1);
+                    color: var(--primary);
+                    padding: 4px 10px;
+                    border-radius: 8px;
                     font-weight: 800;
                     font-size: 11px;
                     text-transform: uppercase;
-                    border: 1px solid #dbeafe;
+                    border: 1px solid rgba(139, 92, 246, 0.2);
                 }
 
                 .name-text {
-                    font-weight: 700;
-                    color: #1e293b;
-                    font-size: 14px;
+                    font-weight: 800;
+                    color: var(--text-main);
+                    font-size: 15px;
                 }
 
                 .status-tag {
-                    color: #22c55e;
-                    font-weight: 600;
-                    background: #f0fdf4;
-                    padding: 4px 10px;
-                    border-radius: 6px;
-                    font-size: 12px;
+                    color: var(--success);
+                    font-weight: 800;
+                    background: rgba(16, 185, 129, 0.1);
+                    padding: 6px 14px;
+                    border-radius: 100px;
+                    font-size: 11px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.05em;
+                    border: 1px solid rgba(16, 185, 129, 0.2);
                 }
 
                 .font-bold {
-                    font-weight: 700;
+                    font-weight: 800;
                 }
 
                 @media (max-width: 1024px) {

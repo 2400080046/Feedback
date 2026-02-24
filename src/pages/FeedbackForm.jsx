@@ -149,11 +149,11 @@ const FeedbackForm = () => {
           max-width: 800px;
           margin: 0 auto;
           padding-bottom: 2rem;
-          animation: fadeIn 0.5s ease-out;
+          animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
+          from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
         }
 
@@ -165,15 +165,18 @@ const FeedbackForm = () => {
         }
 
         .step-item {
-          font-size: 14px;
-          color: #94a3b8;
-          font-weight: 600;
+          font-size: 13px;
+          color: var(--text-muted);
+          font-weight: 800;
           position: relative;
-          padding-bottom: 8px;
+          padding-bottom: 12px;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          transition: var(--transition);
         }
 
         .step-item.active {
-          color: #2563eb;
+          color: var(--primary);
         }
 
         .step-item.active::after {
@@ -183,201 +186,230 @@ const FeedbackForm = () => {
           left: 0;
           width: 100%;
           height: 3px;
-          background: #2563eb;
+          background: var(--grad-primary);
           border-radius: 99px;
+          box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
         }
 
         .feedback-form {
-          background: white;
+          background: var(--glass);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
           border-radius: 24px;
-          padding: 40px;
-          box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-          border: 1px solid #e2e8f0;
+          padding: 48px;
+          border: 1px solid var(--glass-border);
+          box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.3);
         }
 
         .step-content h2 { 
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 800;
-            color: #0f172a;
+            color: var(--text-main);
             margin-bottom: 8px; 
+            letter-spacing: -0.01em;
         }
         
         .subtitle { 
-            color: #64748b; 
-            margin-bottom: 32px;
-            font-size: 15px;
+            color: var(--text-secondary); 
+            margin-bottom: 40px;
+            font-size: 16px;
         }
 
         .course-selection-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-          gap: 16px;
+          gap: 20px;
           margin-bottom: 40px;
         }
 
         .selectable-course {
-          padding: 24px;
-          background: #f8fafc;
-          border-radius: 16px;
-          border: 2px solid transparent;
+          padding: 28px;
+          background: rgba(255, 255, 255, 0.02);
+          border-radius: 20px;
+          border: 1px solid var(--glass-border);
           cursor: pointer;
-          transition: all 0.2s;
+          transition: var(--transition);
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          gap: 10px;
+          position: relative;
+          overflow: hidden;
         }
 
         .selectable-course:hover {
-          background: #f1f5f9;
-          transform: translateY(-2px);
+          background: rgba(255, 255, 255, 0.05);
+          transform: translateY(-4px);
+          border-color: var(--primary);
         }
 
         .selectable-course.selected {
-          border-color: #2563eb;
-          background: #eff6ff;
+          border-color: var(--primary);
+          background: rgba(139, 92, 246, 0.05);
+          box-shadow: 0 0 20px rgba(139, 92, 246, 0.1);
+        }
+        
+        .selectable-course.selected::before {
+          content: '';
+          position: absolute;
+          top: 0; left: 0; width: 4px; height: 100%;
+          background: var(--grad-primary);
         }
 
         .selectable-course .code {
-          font-size: 12px;
+          font-size: 11px;
           font-weight: 800;
-          color: #2563eb;
+          color: var(--primary);
           text-transform: uppercase;
+          letter-spacing: 0.1em;
         }
 
         .selectable-course .name {
-          font-weight: 700;
-          color: #1e293b;
-          font-size: 15px;
+          font-weight: 800;
+          color: var(--text-main);
+          font-size: 16px;
         }
 
         .questions-list {
           display: flex;
           flex-direction: column;
-          gap: 40px;
+          gap: 48px;
           margin-bottom: 40px;
         }
 
         .question-item {
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 20px;
         }
 
         .question-text {
-          font-weight: 700;
-          color: #1e293b;
-          font-size: 16px;
-          line-height: 1.5;
+          font-weight: 800;
+          color: var(--text-main);
+          font-size: 18px;
+          line-height: 1.4;
+          letter-spacing: -0.01em;
         }
 
         .rating-scale {
           display: flex;
-          gap: 12px;
+          gap: 16px;
         }
 
         .rating-btn {
-          width: 48px;
-          height: 48px;
-          border-radius: 12px;
-          background: #f1f5f9;
-          color: #475569;
+          width: 56px;
+          height: 56px;
+          border-radius: 14px;
+          background: rgba(255, 255, 255, 0.03);
+          color: var(--text-secondary);
           display: flex;
           align-items: center;
           justify-content: center;
           font-weight: 800;
-          font-size: 16px;
-          transition: all 0.2s;
+          font-size: 18px;
+          transition: var(--transition);
+          border: 1px solid var(--glass-border);
         }
 
         .rating-btn:hover {
-          background: #e2e8f0;
-          color: #0f172a;
+          background: rgba(255, 255, 255, 0.08);
+          color: var(--text-main);
+          border-color: var(--primary);
         }
 
         .rating-btn.active {
-          background: #0f172a;
+          background: var(--grad-primary);
           color: white;
           transform: scale(1.1);
+          border: none;
+          box-shadow: 0 8px 16px rgba(139, 92, 246, 0.3);
         }
 
         .feedback-textarea {
           width: 100%;
-          min-height: 140px;
-          padding: 16px;
-          background: #f8fafc;
-          border: 1px solid #e2e8f0;
-          border-radius: 12px;
-          color: #0f172a;
+          min-height: 160px;
+          padding: 20px;
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid var(--glass-border);
+          border-radius: 16px;
+          color: var(--text-main);
           font-family: inherit;
-          font-size: 15px;
+          font-size: 16px;
           resize: vertical;
           outline: none;
-          transition: all 0.2s;
+          transition: var(--transition);
         }
 
         .feedback-textarea:focus {
-          border-color: #2563eb;
-          background: white;
-          box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+          border-color: var(--primary);
+          background: rgba(255, 255, 255, 0.06);
+          box-shadow: 0 0 0 4px var(--glass-glow);
         }
 
         .step-actions {
           display: flex;
-          gap: 12px;
+          gap: 16px;
           justify-content: flex-end;
-          margin-top: 32px;
-          padding-top: 24px;
-          border-top: 1px solid #f1f5f9;
+          margin-top: 40px;
+          padding-top: 32px;
+          border-top: 1px solid var(--glass-border);
         }
 
         .primary-btn {
-          padding: 12px 24px;
-          background: #2563eb;
+          padding: 14px 32px;
+          background: var(--grad-primary);
           color: white;
-          border-radius: 12px;
-          font-weight: 700;
-          font-size: 15px;
+          border-radius: 14px;
+          font-weight: 800;
+          font-size: 16px;
           display: flex;
           align-items: center;
-          gap: 8px;
-          transition: all 0.2s;
+          gap: 10px;
+          transition: var(--transition);
+          border: none;
+          box-shadow: 0 10px 20px -5px rgba(139, 92, 246, 0.3);
         }
 
         .primary-btn:hover:not(:disabled) {
-          background: #1d4ed8;
-          transform: translateY(-1px);
+          transform: translateY(-2px);
+          filter: brightness(1.1);
+          box-shadow: 0 20px 30px -10px rgba(139, 92, 246, 0.4);
         }
 
         .primary-btn:disabled {
-          opacity: 0.5;
+          opacity: 0.3;
           cursor: not-allowed;
+          box-shadow: none;
         }
 
         .secondary-btn {
-          padding: 12px 24px;
-          background: #f1f5f9;
-          color: #475569;
-          border-radius: 12px;
+          padding: 14px 28px;
+          background: rgba(255, 255, 255, 0.03);
+          color: var(--text-secondary);
+          border-radius: 14px;
           font-weight: 700;
-          font-size: 15px;
+          font-size: 16px;
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 10px;
+          border: 1px solid var(--glass-border);
+          transition: var(--transition);
         }
 
         .secondary-btn:hover {
-          background: #e2e8f0;
-          color: #0f172a;
+          background: rgba(255, 255, 255, 0.08);
+          color: var(--text-main);
+          border-color: var(--primary);
         }
 
         .review-summary {
-          background: #f8fafc;
-          padding: 24px;
-          border-radius: 16px;
+          background: rgba(255, 255, 255, 0.02);
+          padding: 32px;
+          border-radius: 20px;
           display: flex;
           flex-direction: column;
-          gap: 16px;
-          margin-bottom: 24px;
+          gap: 20px;
+          margin-bottom: 32px;
+          border: 1px solid var(--glass-border);
         }
 
         .summary-item {
@@ -386,25 +418,28 @@ const FeedbackForm = () => {
           align-items: center;
         }
 
-        .summary-item .label { color: #64748b; font-size: 14px; }
-        .summary-item .value { font-weight: 700; color: #0f172a; }
+        .summary-item .label { color: var(--text-secondary); font-size: 15px; font-weight: 600; }
+        .summary-item .value { font-weight: 800; color: var(--text-main); font-size: 16px; }
 
         .feedback-success {
-          background: white;
+          background: var(--glass);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
           text-align: center;
-          padding: 60px 40px;
-          border-radius: 24px;
+          padding: 80px 48px;
+          border-radius: 32px;
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 20px;
-          box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-          border: 1px solid #e2e8f0;
+          gap: 24px;
+          border: 1px solid var(--glass-border);
+          box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.4);
         }
 
         .success-icon {
           margin-bottom: 8px;
-          animation: scale-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.3));
+          animation: scale-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         @keyframes scale-in {
@@ -413,11 +448,11 @@ const FeedbackForm = () => {
         }
 
         .animate-fade-in {
-          animation: fade-in 0.3s ease-out;
+          animation: fade-in 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         @keyframes fade-in {
-          from { opacity: 0; transform: translateY(10px); }
+          from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
         }
       `}} />
